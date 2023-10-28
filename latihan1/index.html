@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <body >
+    <h1> Geolocation</h1>
+    <p>Klik tombol dibawah untuk mengetahui titik koordinasi mu</p>
+
+    <button onclick="getLocation()">Try It</button>
+
+    <p id="demo"></p>
+
+    <script>
+      const x = document.getElementById("demo");
+
+      function getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+          x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+      }
+
+      function showPosition(position) {
+
+        var xhttp = new XMLHttpRequest();
+
+        // xhttp (cuma nama var) dibawah ini dapat dari w3school tentang AJAX Request
+        xhttp.open("GET", "local.php?lat=" + position.coords.latitude + "&long=" + position.coords.longitude);
+        xhttp.send();
+
+        // x.innerHTML = "Latitude: " + position.coords.latitude +
+        // "<br>Longitude: " + position.coords.longitude;
+
+      }
+    </script>
+  </body>
+</html>
